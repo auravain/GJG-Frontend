@@ -65,10 +65,10 @@ export default function ProductList() {
 						</Table.Row>
 					))}
 				</Table.Body>
-				<Table.Footer>
+				<Table.Footer style={{ textAlign: 'center' }}>
 					<Table.Row>
 						<Table.HeaderCell colSpan="7">
-							<Menu style={{ alignItems: 'center', textAlign: 'center' }} pagination>
+							<Menu pagination>
 								<Menu.Item as="a" icon>
 									<Icon name="chevron left" />
 								</Menu.Item>
