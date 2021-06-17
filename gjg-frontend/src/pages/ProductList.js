@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { Table, Icon, Menu, Input } from 'semantic-ui-react';
+import { Table, Icon, Menu, Input, Dropdown } from 'semantic-ui-react';
 import ProductService from '../services/productService';
 import DatePicker from 'react-datepicker';
 import 'react-datepicker/dist/react-datepicker.css';
@@ -8,6 +8,11 @@ import '../pages/productList.css';
 export default function ProductList() {
 	const [products, setProducts] = useState([]);
 	const [startDate, setStartDate] = useState(new Date());
+	const options = [
+		{ key: 1, text: 'iOS', value: 1 },
+		{ key: 2, text: 'Android', value: 2 },
+	];
+	const DropdownClearable = () => <Dropdown clearable options={options} selection />;
 
 	useEffect(() => {
 		let productService = new ProductService();
@@ -27,7 +32,7 @@ export default function ProductList() {
 						<Table.HeaderCell>
 							Platform <br />
 							<br />
-							<select />
+							<DropdownClearable />
 						</Table.HeaderCell>
 						<Table.HeaderCell>
 							Date <br />
