@@ -5,7 +5,7 @@ import ProductList from '../pages/ProductList';
 export default function Dashboard() {
 	return (
 		<div>
-			<Button style={{ marginTop: '1em', marginBottom: '1em' }}>Change Data</Button>
+			<Button style={{ marginTop: '1em', marginBottom: '1em' }}>Change View of Data</Button>
 			<ProductList />
 		</div>
 	);
