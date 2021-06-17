@@ -1,9 +1,12 @@
 import React, { useState, useEffect } from 'react';
 import { Table, Icon, Menu } from 'semantic-ui-react';
 import ProductService from '../services/productService';
+import DatePicker from 'react-datepicker';
+import 'react-datepicker/dist/react-datepicker.css';
 
 export default function ProductList() {
 	const [products, setProducts] = useState([]);
+	const [startDate, setStartDate] = useState(new Date());
 
 	useEffect(() => {
 		let productService = new ProductService();
@@ -28,7 +31,14 @@ export default function ProductList() {
 						<Table.HeaderCell>
 							Date <br />
 							<br />
-							<input />
+							<DatePicker
+								dateFormat="yyyy/MM/dd"
+								selected={startDate}
+								onChange={(date) => setStartDate(date)}
+								placeholderText="Select a date"
+								isClearable={true}
+								showYearDropdown
+							/>
 						</Table.HeaderCell>
 						<Table.HeaderCell>Impressions</Table.HeaderCell>
 						<Table.HeaderCell>Clicks</Table.HeaderCell>
