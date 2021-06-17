@@ -1,8 +1,9 @@
 import React, { useState, useEffect } from 'react';
-import { Table, Icon, Menu } from 'semantic-ui-react';
+import { Table, Icon, Menu, Input } from 'semantic-ui-react';
 import ProductService from '../services/productService';
 import DatePicker from 'react-datepicker';
 import 'react-datepicker/dist/react-datepicker.css';
+import '../pages/productList.css';
 
 export default function ProductList() {
 	const [products, setProducts] = useState([]);
@@ -21,7 +22,7 @@ export default function ProductList() {
 						<Table.HeaderCell>
 							App <br />
 							<br />
-							<input />
+							<Input icon="search" />
 						</Table.HeaderCell>
 						<Table.HeaderCell>
 							Platform <br />
@@ -32,12 +33,16 @@ export default function ProductList() {
 							Date <br />
 							<br />
 							<DatePicker
-								dateFormat="yyyy/MM/dd"
+								className="date-picker"
+								dateFormat="yyyy-MM-dd"
+								placeholderText="Select a date"
 								selected={startDate}
 								onChange={(date) => setStartDate(date)}
-								placeholderText="Select a date"
-								isClearable={true}
+								isClearable
+								showMonthDropdown
 								showYearDropdown
+								dropdownMode="select"
+								//withPortal
 							/>
 						</Table.HeaderCell>
 						<Table.HeaderCell>Impressions</Table.HeaderCell>
@@ -62,8 +67,8 @@ export default function ProductList() {
 				</Table.Body>
 				<Table.Footer>
 					<Table.Row>
-						<Table.HeaderCell colSpan="3">
-							<Menu floated="right" pagination>
+						<Table.HeaderCell colSpan="7">
+							<Menu style={{ alignItems: 'center', textAlign: 'center' }} pagination>
 								<Menu.Item as="a" icon>
 									<Icon name="chevron left" />
 								</Menu.Item>
