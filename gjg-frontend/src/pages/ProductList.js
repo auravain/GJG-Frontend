@@ -12,18 +12,31 @@ export default function ProductList() {
 
 	return (
 		<div>
-			<Table>
+			<Table celled>
 				<Table.Header>
 					<Table.Row>
-						<Table.HeaderCell>App</Table.HeaderCell>
-						<Table.HeaderCell>Platform</Table.HeaderCell>
-						<Table.HeaderCell>Date</Table.HeaderCell>
+						<Table.HeaderCell>
+							App <br />
+							<br />
+							<input />
+						</Table.HeaderCell>
+						<Table.HeaderCell>
+							Platform <br />
+							<br />
+							<select />
+						</Table.HeaderCell>
+						<Table.HeaderCell>
+							Date <br />
+							<br />
+							<input />
+						</Table.HeaderCell>
 						<Table.HeaderCell>Impressions</Table.HeaderCell>
 						<Table.HeaderCell>Clicks</Table.HeaderCell>
 						<Table.HeaderCell>Installs</Table.HeaderCell>
 						<Table.HeaderCell>DAU</Table.HeaderCell>
 					</Table.Row>
 				</Table.Header>
+
 				<Table.Body>
 					{products.map((product) => (
 						<Table.Row>
