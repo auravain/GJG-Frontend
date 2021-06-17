@@ -12,7 +12,15 @@ export default function ProductList() {
 		{ key: 1, text: 'iOS', value: 1 },
 		{ key: 2, text: 'Android', value: 2 },
 	];
-	const DropdownClearable = () => <Dropdown clearable options={options} placeholder="Select a platform" selection />;
+	const DropdownClearable = () => (
+		<Dropdown
+			clearable
+			options={options}
+			placeholder="Select a platform"
+			selection
+			style={{ fontSize: '15px', fontWeight: 'normal' }}
+		/>
+	);
 
 	useEffect(() => {
 		let productService = new ProductService();
