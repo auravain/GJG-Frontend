@@ -35,7 +35,7 @@ export default function ProductList() {
 						<Table.HeaderCell>
 							App <br />
 							<br />
-							<Input icon="search" />
+							<Input icon="search" placeholder="Search an app" />
 						</Table.HeaderCell>
 						<Table.HeaderCell>
 							Platform <br />
