@@ -9,8 +9,8 @@ export default function ProductList() {
 	const [products, setProducts] = useState([]);
 	const [startDate, setStartDate] = useState(new Date());
 	const options = [
-		{ key: 1, text: 'iOS', value: 1 },
-		{ key: 2, text: 'Android', value: 2 },
+		{ key: 1, text: 'iOS', icon:"apple", value: 1 },
+		{ key: 2, text: 'Android', icon:"android", value: 2 },
 	];
 	const DropdownClearable = () => (
 		<Dropdown
