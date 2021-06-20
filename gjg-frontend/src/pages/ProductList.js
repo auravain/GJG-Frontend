@@ -8,9 +8,11 @@ import '../pages/productList.css';
 export default function ProductList() {
 	const [products, setProducts] = useState([]);
 	const [startDate, setStartDate] = useState(new Date());
+	const [searchFilter, setSearchFilter] = useState('');
+
 	const options = [
-		{ key: 1, text: 'iOS', icon:"apple", value: 1 },
-		{ key: 2, text: 'Android', icon:"android", value: 2 },
+		{ key: 1, text: 'iOS', icon: 'apple', value: 1 },
+		{ key: 2, text: 'Android', icon: 'android', value: 2 },
 	];
 	const DropdownClearable = () => (
 		<Dropdown
@@ -35,7 +37,13 @@ export default function ProductList() {
 						<Table.HeaderCell>
 							App <br />
 							<br />
-							<Input icon="search" placeholder="Search an app" />
+							<Input
+								icon="search"
+								placeholder="Search an app"
+								onChange={(e) => {
+									setSearchFilter(e.target.value);
+								}}
+							/>
 						</Table.HeaderCell>
 						<Table.HeaderCell>
 							Platform <br />
@@ -51,6 +59,9 @@ export default function ProductList() {
 								placeholderText="Select a date"
 								selected={startDate}
 								onChange={(date) => setStartDate(date)}
+								filterDate={(d) => {
+									return new Date() > d;
+								}}
 								isClearable
 								showMonthDropdown
 								showYearDropdown
@@ -66,17 +77,25 @@ export default function ProductList() {
 				</Table.Header>
 
 				<Table.Body>
-					{products.map((product) => (
-						<Table.Row>
-							<Table.Cell>{product.app}</Table.Cell>
-							<Table.Cell>{product.platform}</Table.Cell>
-							<Table.Cell>{product.date}</Table.Cell>
-							<Table.Cell>{product.impressions}</Table.Cell>
-							<Table.Cell>{product.clicks}</Table.Cell>
-							<Table.Cell>{product.installs}</Table.Cell>
-							<Table.Cell>{product.dau}</Table.Cell>
-						</Table.Row>
-					))}
+					{products
+						.filter((product) => {
+							if (searchFilter == '') {
+								return product;
+							} else if (product.app.toLowerCase().includes(searchFilter.toLowerCase())) {
+								return product;
+							}
+						})
+						.map((product) => (
+							<Table.Row>
+								<Table.Cell>{product.app}</Table.Cell>
+								<Table.Cell>{product.platform}</Table.Cell>
+								<Table.Cell>{product.date}</Table.Cell>
+								<Table.Cell>{product.impressions}</Table.Cell>
+								<Table.Cell>{product.clicks}</Table.Cell>
+								<Table.Cell>{product.installs}</Table.Cell>
+								<Table.Cell>{product.dau}</Table.Cell>
+							</Table.Row>
+						))}
 				</Table.Body>
 				<Table.Footer style={{ textAlign: 'center' }}>
 					<Table.Row>
