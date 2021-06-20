@@ -14,3 +14,7 @@
 	border-color: #3747d8;
 }
  */
+.react-datepicker__close-icon::before,
+.react-datepicker__close-icon::after {
+	background-color: grey;
+}
