@@ -7,8 +7,9 @@ import '../pages/productList.css';
 
 export default function ProductList() {
 	const [products, setProducts] = useState([]);
-	const [startDate, setStartDate] = useState(new Date());
 	const [searchFilter, setSearchFilter] = useState('');
+	const [platformFilter, setPlatformFilter] = useState([]);
+	const [dateFilter, setDateFilter] = useState(new Date());
 
 	const options = [
 		{ key: 1, text: 'iOS', icon: 'apple', value: 1 },
@@ -21,6 +22,10 @@ export default function ProductList() {
 			placeholder="Select a platform"
 			selection
 			style={{ fontSize: '15px', fontWeight: 'normal' }}
+			onChange={(e) => {
+				setPlatformFilter(e);
+				console.log('selected' + e);
+			}}
 		/>
 	);
 
@@ -57,10 +62,13 @@ export default function ProductList() {
 								className="date-picker"
 								dateFormat="yyyy-MM-dd"
 								placeholderText="Select a date"
-								selected={startDate}
-								onChange={(date) => setStartDate(date)}
-								filterDate={(d) => {
-									return new Date() > d;
+								selected={dateFilter}
+								onChange={(date) => {
+									setDateFilter(date);
+									console.log('selected ' + date);
+								}}
+								filterDate={(date) => {
+									return new Date() > date;
 								}}
 								isClearable
 								showMonthDropdown
@@ -79,11 +87,28 @@ export default function ProductList() {
 				<Table.Body>
 					{products
 						.filter((product) => {
-							if (searchFilter == '') {
+							if (searchFilter === '') {
 								return product;
 							} else if (product.app.toLowerCase().includes(searchFilter.toLowerCase())) {
 								return product;
 							}
+							return null;
+						})
+						.filter((product) => {
+							if (platformFilter === '') {
+								return product;
+							} else if (product.platform.toString().includes(platformFilter.toString())) {
+								return product;
+							}
+							return null;
+						})
+						.filter((product) => {
+							if (dateFilter) {
+								return product;
+							} else if (product.date.toString().includes(dateFilter.toString())) {
+								return product;
+							}
+							return null;
 						})
 						.map((product) => (
 							<Table.Row>
