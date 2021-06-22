@@ -1,17 +1,15 @@
 import React, { useState, useEffect } from 'react';
 import { Table, Input } from 'semantic-ui-react';
 import ProductService from '../services/productService';
-import DatePicker from 'react-datepicker';
-import 'react-datepicker/dist/react-datepicker.css';
-import '../pages/productList.css';
 import Pagination from '../components/Pagination';
 import DropdownPlatform from '../components/DropdownPlatform';
+import DatePickerDate from '../components/DatePickerDate';
 
 export default function ProductList() {
 	const [products, setProducts] = useState([]);
 	const [searchFilter, setSearchFilter] = useState('');
 	const [platformFilter] = useState([]);
-	const [dateFilter, setDateFilter] = useState(new Date());
+	const [dateFilter] = useState(new Date());
 	const [showPerPage] = useState(10);
 
 	const [pagination, setPagination] = useState({
@@ -51,24 +49,7 @@ export default function ProductList() {
 						<Table.HeaderCell>
 							Date <br />
 							<br />
-							<DatePicker
-								className="date-picker"
-								dateFormat="yyyy-MM-dd"
-								placeholderText="Select a date"
-								selected={dateFilter}
-								onChange={(date) => {
-									setDateFilter(date);
-									console.log('selected ' + date);
-								}}
-								filterDate={(date) => {
-									return new Date() > date;
-								}}
-								isClearable
-								showMonthDropdown
-								showYearDropdown
-								dropdownMode="select"
-								//withPortal
-							/>
+							<DatePickerDate />
 						</Table.HeaderCell>
 						<Table.HeaderCell>Impressions</Table.HeaderCell>
 						<Table.HeaderCell>Clicks</Table.HeaderCell>
