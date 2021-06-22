@@ -1,20 +1,31 @@
 import React, { useState, useEffect } from 'react';
-import { Table, Icon, Menu, Input, Dropdown } from 'semantic-ui-react';
+import { Table, Input, Dropdown } from 'semantic-ui-react';
 import ProductService from '../services/productService';
 import DatePicker from 'react-datepicker';
 import 'react-datepicker/dist/react-datepicker.css';
 import '../pages/productList.css';
+import Pagination from '../components/Pagination';
 
 export default function ProductList() {
 	const [products, setProducts] = useState([]);
 	const [searchFilter, setSearchFilter] = useState('');
 	const [platformFilter, setPlatformFilter] = useState([]);
 	const [dateFilter, setDateFilter] = useState(new Date());
+	const [showPerPage] = useState(10);
+
+	const [pagination, setPagination] = useState({
+		start: 0,
+		end: showPerPage,
+	});
+	const onPaginationChange = (start, end) => {
+		setPagination({ start: start, end: end });
+	};
 
 	const options = [
 		{ key: 1, text: 'iOS', icon: 'apple', value: 1 },
 		{ key: 2, text: 'Android', icon: 'android', value: 2 },
 	];
+
 	const DropdownClearable = () => (
 		<Dropdown
 			clearable
@@ -100,18 +111,19 @@ export default function ProductList() {
 							} else if (product.platform.toString().includes(platformFilter.toString())) {
 								return product;
 							}
-							return null;
+							return product;
 						})
 						.filter((product) => {
 							if (dateFilter) {
 								return product;
-							} else if (product.date.toString().includes(dateFilter.toString())) {
+							} else if (product.date.includes(dateFilter)) {
 								return product;
 							}
-							return null;
+							return product;
 						})
-						.map((product) => (
-							<Table.Row>
+						.slice(pagination.start, pagination.end)
+						.map((product, key) => (
+							<Table.Row key={key}>
 								<Table.Cell>{product.app}</Table.Cell>
 								<Table.Cell>{product.platform}</Table.Cell>
 								<Table.Cell>{product.date}</Table.Cell>
@@ -122,21 +134,11 @@ export default function ProductList() {
 							</Table.Row>
 						))}
 				</Table.Body>
+
 				<Table.Footer style={{ textAlign: 'center' }}>
 					<Table.Row>
 						<Table.HeaderCell colSpan="7">
-							<Menu pagination>
-								<Menu.Item as="a" icon>
-									<Icon name="chevron left" />
-								</Menu.Item>
-								<Menu.Item as="a">1</Menu.Item>
-								<Menu.Item as="a">2</Menu.Item>
-								<Menu.Item as="a">3</Menu.Item>
-								<Menu.Item as="a">4</Menu.Item>
-								<Menu.Item as="a" icon>
-									<Icon name="chevron right" />
-								</Menu.Item>
-							</Menu>
+							<Pagination showPerPage={showPerPage} onPaginationChange={onPaginationChange} />
 						</Table.HeaderCell>
 					</Table.Row>
 				</Table.Footer>
