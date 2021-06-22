@@ -1,15 +1,16 @@
 import React, { useState, useEffect } from 'react';
-import { Table, Input, Dropdown } from 'semantic-ui-react';
+import { Table, Input } from 'semantic-ui-react';
 import ProductService from '../services/productService';
 import DatePicker from 'react-datepicker';
 import 'react-datepicker/dist/react-datepicker.css';
 import '../pages/productList.css';
 import Pagination from '../components/Pagination';
+import DropdownPlatform from '../components/DropdownPlatform';
 
 export default function ProductList() {
 	const [products, setProducts] = useState([]);
 	const [searchFilter, setSearchFilter] = useState('');
-	const [platformFilter, setPlatformFilter] = useState([]);
+	const [platformFilter] = useState([]);
 	const [dateFilter, setDateFilter] = useState(new Date());
 	const [showPerPage] = useState(10);
 
@@ -20,25 +21,6 @@ export default function ProductList() {
 	const onPaginationChange = (start, end) => {
 		setPagination({ start: start, end: end });
 	};
-
-	const options = [
-		{ key: 1, text: 'iOS', icon: 'apple', value: 1 },
-		{ key: 2, text: 'Android', icon: 'android', value: 2 },
-	];
-
-	const DropdownClearable = () => (
-		<Dropdown
-			clearable
-			options={options}
-			placeholder="Select a platform"
-			selection
-			style={{ fontSize: '15px', fontWeight: 'normal' }}
-			onChange={(e) => {
-				setPlatformFilter(e);
-				console.log('selected' + e);
-			}}
-		/>
-	);
 
 	useEffect(() => {
 		let productService = new ProductService();
@@ -64,7 +46,7 @@ export default function ProductList() {
 						<Table.HeaderCell>
 							Platform <br />
 							<br />
-							<DropdownClearable />
+							<DropdownPlatform />
 						</Table.HeaderCell>
 						<Table.HeaderCell>
 							Date <br />
