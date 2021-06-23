@@ -4,6 +4,7 @@ import ProductService from '../services/productService';
 import Pagination from '../components/Pagination';
 import DropdownPlatform from '../components/DropdownPlatform';
 import DatePickerDate from '../components/DatePickerDate';
+import '../styles/productList.css';
 
 export default function ProductList() {
 	const [products, setProducts] = useState([]);
@@ -98,7 +99,7 @@ export default function ProductList() {
 						))}
 				</Table.Body>
 
-				<Table.Footer style={{ textAlign: 'center' }}>
+				<Table.Footer>
 					<Table.Row>
 						<Table.HeaderCell colSpan="7">
 							<Pagination showPerPage={showPerPage} onPaginationChange={onPaginationChange} />
