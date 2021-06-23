@@ -1,7 +1,6 @@
 import React, { useState } from 'react';
-import { Button } from 'semantic-ui-react';
 import ProductList from '../pages/ProductList';
-import 'semantic-ui-css/semantic.min.css';
+import '../styles/dashboard.css';
 
 export default function Dashboard() {
 	//const [count, setCount] = useState(0);
@@ -19,10 +18,10 @@ export default function Dashboard() {
 	}
 	} */
 	return (
-		<div>
-			<Button style={{ marginTop: '1em', marginBottom: '1em' }} onClick={onClick}>
+		<div className="dash-style">
+			<button className="button" onClick={onClick}>
 				Change View of Data
-			</Button>
+			</button>
 			{table ? <ProductList /> : null}
 		</div>
 	);
