@@ -13,7 +13,7 @@ export default function Dashboard() {
 	return (
 		<div className="dash-style">
 			<button className="button" onClick={onClick}>
-				Change View of Data
+				Change View
 			</button>
 			{table ? <Graph /> : <ProductList />}
 		</div>
