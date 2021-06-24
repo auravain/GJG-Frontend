@@ -15,7 +15,7 @@ export default function Dashboard() {
 			<button className="button" onClick={onClick}>
 				Change View of Data
 			</button>
-			{table ? <ProductList /> : <Graph />}
+			{table ? <Graph /> : <ProductList />}
 		</div>
 	);
 }
