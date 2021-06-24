@@ -1,7 +1,11 @@
 import React from 'react';
 import { Button, Icon } from 'semantic-ui-react';
 
-function SortButton() {
+function SortButton({ sorting, setSorting }) {
+	const onClick = () => {
+		setSorting();
+	};
+
 	return (
 		<div>
 			<Button
@@ -13,7 +17,7 @@ function SortButton() {
 					marginTop: '1em',
 					paddingRight: '1em',
 					paddingLeft: '1em',
-				}} /* options={options} */
+				}}
 			>
 				<Icon id="icon" name="arrow up" style={{ fontSize: '1.5em' }} />
 				{/* {onClick ? 'arrow up' : 'arrow down'} */}

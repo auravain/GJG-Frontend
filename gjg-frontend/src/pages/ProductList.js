@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { Table, Input, Grid, Dropdown, Button } from 'semantic-ui-react';
+import { Table, Input, Grid } from 'semantic-ui-react';
 import ProductService from '../services/productService';
 import Pagination from '../components/Pagination';
 import DropdownPlatform from '../components/DropdownPlatform';
@@ -14,6 +14,7 @@ export default function ProductList() {
 	const [platformFilter, setPlatformFilter] = useState('');
 	const [dateFilter, setDateFilter] = useState(new Date());
 	const [showPerPage] = useState(10);
+	const [sorting, setSorting] = useState('asc');
 
 	const [pagination, setPagination] = useState({
 		start: 0,
@@ -60,7 +61,7 @@ export default function ProductList() {
 									</Table.HeaderCell>
 									<Table.HeaderCell>
 										Impressions <br />
-										<SortButton />
+										<SortButton setSorting={setSorting} sorting={sorting} />
 									</Table.HeaderCell>
 									<Table.HeaderCell>
 										Clicks
