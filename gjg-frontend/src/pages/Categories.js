@@ -14,11 +14,11 @@ function Categories() {
 				vertical
 			>
 				<Menu.Item>
-					<Checkbox style={{ paddingRight: '1.5em', paddingTop: '0.2em' }} defaultChecked />
+					<Checkbox style={{ paddingRight: '1.5em', paddingTop: '0.2em' }} />
 					App
 				</Menu.Item>
 				<Menu.Item>
-					<Checkbox style={{ paddingRight: '1.5em', paddingTop: '0.2em' }} defaultChecked />
+					<Checkbox style={{ paddingRight: '1.5em', paddingTop: '0.2em' }} />
 					Platform
 				</Menu.Item>
 				<Menu.Item>
@@ -26,19 +26,19 @@ function Categories() {
 					Date
 				</Menu.Item>
 				<Menu.Item>
-					<Checkbox style={{ paddingRight: '1.5em', paddingTop: '0.2em' }} />
+					<Checkbox style={{ paddingRight: '1.5em', paddingTop: '0.2em' }} defaultChecked />
 					Impressions
 				</Menu.Item>
 				<Menu.Item>
-					<Checkbox style={{ paddingRight: '1.5em', paddingTop: '0.2em' }} />
+					<Checkbox style={{ paddingRight: '1.5em', paddingTop: '0.2em' }} defaultChecked />
 					Clicks
 				</Menu.Item>
 				<Menu.Item>
-					<Checkbox style={{ paddingRight: '1.5em', paddingTop: '0.2em' }} />
+					<Checkbox style={{ paddingRight: '1.5em', paddingTop: '0.2em' }} defaultChecked />
 					Installs
 				</Menu.Item>
 				<Menu.Item>
-					<Checkbox style={{ paddingRight: '1.5em', paddingTop: '0.2em' }} />
+					<Checkbox style={{ paddingRight: '1.5em', paddingTop: '0.2em' }} defaultChecked />
 					DAU
 				</Menu.Item>
 			</Menu>
