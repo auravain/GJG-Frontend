@@ -2,10 +2,10 @@ import React from 'react';
 import { Button, Icon } from 'semantic-ui-react';
 
 function SortButton({ sorting, setSorting }) {
-	const onClick = () => {
+	/* 	const onClick = () => {
 		setSorting();
 	};
-
+ */
 	return (
 		<div>
 			<Button
