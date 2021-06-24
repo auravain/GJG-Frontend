@@ -1,15 +1,15 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import { Icon, Menu } from 'semantic-ui-react';
 import 'semantic-ui-css/semantic.min.css';
 
 const Pagination = ({ showPerPage, onPaginationChange }) => {
 	const [counter, setCounter] = useState(1);
 
-	useEffect(() => {
+/* 	useEffect(() => {
 		const value = showPerPage * counter;
 		onPaginationChange(value - showPerPage, value);
-	}, [counter]);
-
+	}, [counter, showPerPage, onPaginationChange]);
+ */
 	return (
 		<div>
 			<Menu pagination>
