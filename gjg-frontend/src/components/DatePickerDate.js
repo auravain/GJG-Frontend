@@ -3,8 +3,7 @@ import DatePicker from 'react-datepicker';
 import 'react-datepicker/dist/react-datepicker.css';
 import '../styles/datePicker.css';
 
-export default function DatePickerDate() {
-	const [dateFilter, setDateFilter] = useState(new Date());
+export default function DatePickerDate({ dateFilter, setDateFilter }) {
 
 	return (
 		<div>
