@@ -1,7 +1,22 @@
 import React from 'react';
 import { Checkbox, Menu } from 'semantic-ui-react';
 
-function Categories() {
+function Categories({
+	app,
+	platform,
+	date,
+	impressions,
+	clicks,
+	dau,
+	installs,
+	setApp,
+	setPlatform,
+	setDate,
+	setImpressions,
+	setClicks,
+	setInstalls,
+	setDau,
+}) {
 	return (
 		<div>
 			<Menu
@@ -14,31 +29,57 @@ function Categories() {
 				vertical
 			>
 				<Menu.Item>
-					<Checkbox style={{ paddingRight: '1.5em', paddingTop: '0.2em' }} />
+					<Checkbox
+						onClick={() => setApp(!app)}
+						style={{ paddingRight: '1.5em', paddingTop: '0.2em' }}
+					/>
 					App
 				</Menu.Item>
 				<Menu.Item>
-					<Checkbox style={{ paddingRight: '1.5em', paddingTop: '0.2em' }} />
+					<Checkbox
+						onClick={() => setPlatform(!platform)}
+						style={{ paddingRight: '1.5em', paddingTop: '0.2em' }}
+					/>
 					Platform
 				</Menu.Item>
 				<Menu.Item>
-					<Checkbox style={{ paddingRight: '1.5em', paddingTop: '0.2em' }} defaultChecked />
+					<Checkbox
+						onClick={() => setDate(!date)}
+						style={{ paddingRight: '1.5em', paddingTop: '0.2em' }}
+						defaultChecked
+					/>
 					Date
 				</Menu.Item>
 				<Menu.Item>
-					<Checkbox style={{ paddingRight: '1.5em', paddingTop: '0.2em' }} defaultChecked />
+					<Checkbox
+						onClick={() => setImpressions(!impressions)}
+						style={{ paddingRight: '1.5em', paddingTop: '0.2em' }}
+						defaultChecked
+					/>
 					Impressions
 				</Menu.Item>
 				<Menu.Item>
-					<Checkbox style={{ paddingRight: '1.5em', paddingTop: '0.2em' }} defaultChecked />
+					<Checkbox
+						onClick={() => setClicks(!clicks)}
+						style={{ paddingRight: '1.5em', paddingTop: '0.2em' }}
+						defaultChecked
+					/>
 					Clicks
 				</Menu.Item>
 				<Menu.Item>
-					<Checkbox style={{ paddingRight: '1.5em', paddingTop: '0.2em' }} defaultChecked />
+					<Checkbox
+						onClick={() => setInstalls(!installs)}
+						style={{ paddingRight: '1.5em', paddingTop: '0.2em' }}
+						defaultChecked
+					/>
 					Installs
 				</Menu.Item>
 				<Menu.Item>
-					<Checkbox style={{ paddingRight: '1.5em', paddingTop: '0.2em' }} defaultChecked />
+					<Checkbox
+						onClick={() => setDau(!dau)}
+						style={{ paddingRight: '1.5em', paddingTop: '0.2em' }}
+						defaultChecked
+					/>
 					DAU
 				</Menu.Item>
 			</Menu>

@@ -14,7 +14,14 @@ export default function ProductList() {
 	const [platformFilter, setPlatformFilter] = useState('');
 	const [dateFilter, setDateFilter] = useState(new Date());
 	const [showPerPage] = useState(10);
-	const [sorting, setSorting] = useState('asc');
+	//const [sorting, setSorting] = useState('asc');
+	const [app, setApp] = useState(true);
+	const [platform, setPlatform] = useState(true);
+	const [date, setDate] = useState(false);
+	const [impressions, setImpressions] = useState(false);
+	const [clicks, setClicks] = useState(false);
+	const [installs, setInstalls] = useState(false);
+	const [dau, setDau] = useState(false);
 
 	const [pagination, setPagination] = useState({
 		start: 0,
@@ -24,10 +31,20 @@ export default function ProductList() {
 		setPagination({ start: start, end: end });
 	};
 
+	const getData = async () => {
+		let productService = await new ProductService();
+		await productService.getProducts().then((result) => setProducts(result.data.data));
+	};
 	useEffect(() => {
-		let productService = new ProductService();
-		productService.getProducts().then((result) => setProducts(result.data.data));
+		getData();
 	}, []);
+
+	const metricColumns = [
+		{ visible: impressions, name: 'Impressions', icon: <SortButton products={products} /> },
+		{ visible: clicks, name: 'Clicks', icon: <SortButton products={products} /> },
+		{ visible: installs, name: 'Installs', icon: <SortButton products={products} /> },
+		{ visible: dau, name: 'DAU', icon: <SortButton products={products} /> },
+	];
 
 	return (
 		<div>
@@ -37,7 +54,7 @@ export default function ProductList() {
 						<Table celled>
 							<Table.Header>
 								<Table.Row>
-									<Table.HeaderCell>
+									<Table.HeaderCell style={app ? { display: 'none' } : null}>
 										App <br />
 										<br />
 										<Input
@@ -49,35 +66,25 @@ export default function ProductList() {
 											}}
 										/>
 									</Table.HeaderCell>
-									<Table.HeaderCell>
+									<Table.HeaderCell style={platform ? { display: 'none' } : null}>
 										Platform <br />
 										<br />
 										<DropdownPlatform setPlatformFilter={setPlatformFilter} />
 									</Table.HeaderCell>
-									<Table.HeaderCell>
+									<Table.HeaderCell style={date ? { display: 'none' } : null}>
 										Date <br />
 										<br />
 										<DatePickerDate dateFilter={dateFilter} setDateFilter={setDateFilter} />
 									</Table.HeaderCell>
-									<Table.HeaderCell>
-										Impressions <br />
-										<SortButton setSorting={setSorting} sorting={sorting} />
-									</Table.HeaderCell>
-									<Table.HeaderCell>
-										Clicks
-										<br />
-										<SortButton />
-									</Table.HeaderCell>
-									<Table.HeaderCell>
-										Installs
-										<br />
-										<SortButton />
-									</Table.HeaderCell>
-									<Table.HeaderCell>
-										DAU
-										<br />
-										<SortButton />
-									</Table.HeaderCell>
+									{metricColumns.map((metricColumn, i) => (
+										<Table.HeaderCell
+											style={metricColumn.visible ? { display: 'none' } : null}
+											key={i}
+										>
+											{metricColumn.name} <br />
+											{metricColumn.icon}
+										</Table.HeaderCell>
+									))}
 								</Table.Row>
 							</Table.Header>
 
@@ -118,13 +125,27 @@ export default function ProductList() {
 									.slice(pagination.start, pagination.end)
 									.map((product, key) => (
 										<Table.Row key={key}>
-											<Table.Cell>{product.app}</Table.Cell>
-											<Table.Cell>{product.platform}</Table.Cell>
-											<Table.Cell>{product.date}</Table.Cell>
-											<Table.Cell>{product.impressions}</Table.Cell>
-											<Table.Cell>{product.clicks}</Table.Cell>
-											<Table.Cell>{product.installs}</Table.Cell>
-											<Table.Cell>{product.dau}</Table.Cell>
+											<Table.Cell style={app ? { display: 'none' } : null}>
+												{product.app}
+											</Table.Cell>
+											<Table.Cell style={platform ? { display: 'none' } : null}>
+												{product.platform}
+											</Table.Cell>
+											<Table.Cell style={date ? { display: 'none' } : null}>
+												{product.date}
+											</Table.Cell>
+											<Table.Cell style={impressions ? { display: 'none' } : null}>
+												{product.impressions}
+											</Table.Cell>
+											<Table.Cell style={clicks ? { display: 'none' } : null}>
+												{product.clicks}
+											</Table.Cell>
+											<Table.Cell style={installs ? { display: 'none' } : null}>
+												{product.installs}
+											</Table.Cell>
+											<Table.Cell style={dau ? { display: 'none' } : null}>
+												{product.dau}
+											</Table.Cell>
 										</Table.Row>
 									))}
 							</Table.Body>
@@ -139,7 +160,22 @@ export default function ProductList() {
 						</Table>
 					</Grid.Column>
 					<Grid.Column width={2}>
-						<Categories />
+						<Categories
+							setApp={setApp}
+							setPlatform={setPlatform}
+							setDate={setDate}
+							setImpressions={setImpressions}
+							setClicks={setClicks}
+							setInstalls={setInstalls}
+							setDau={setDau}
+							app={app}
+							platform={platform}
+							date={date}
+							impressions={impressions}
+							clicks={clicks}
+							installs={installs}
+							dau={dau}
+						/>
 					</Grid.Column>
 				</Grid.Row>
 			</Grid>
