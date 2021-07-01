@@ -1,7 +1,7 @@
 ## Project Content
 
 <p align="left">
-  <img src="gjg-frontend.gif" width="600px" title="gif">
+  <img src="gjg-frontend.gif" width="800px" title="gif">
 </p>
 
 [:point_right:Click to See Review on Netlify](https://60d4c5de7d4ff94be1d9d21d--wonderful-clarke-4e478a.netlify.app/)
